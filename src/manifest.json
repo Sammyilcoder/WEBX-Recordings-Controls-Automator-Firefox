@@ -2,7 +2,13 @@
 	"manifest_version": 2,
 	"name": "WEBX Recordings Controls Automator",
 	"description":"Use your keyboard inputs to pause/play your meeting recording, forward 10 seconds or backward 10 seconds using arrows.",
-	"version": "2.1",
+	"version": "3.0",
+	"applications": {
+		"gecko": {
+			"id": "webx-recordings-controls@andreacarpi.it",
+			"strict_min_version": "57.0"
+		}
+	},
 	"content_scripts": [
 		{
 			"matches":[
@@ -22,13 +28,6 @@
 	],
 	"default_locale": "it",
 	"homepage_url": "https://www.andreacarpi.it/",
-	"sandbox": {
-		"pages": [
-		      "https://www.andreacarpi.it"
-		],
-		"content_security_policy":  "sandbox allow-scripts; script-src 'self'"
-		 
-	},
 	"browser_action": {
 		"default_title": "__MSG_defaultTitle__",
 		"default_icon": {
