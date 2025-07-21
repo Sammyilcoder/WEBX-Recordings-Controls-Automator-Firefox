@@ -1,30 +1,14 @@
+This firefox extension is based on the original Webex Recordings Controls Automator by Andrea Carpi, with modifications for Firefox compatibility and additional features.
+This is the link to the original project: https://github.com/andreacarpibomber/WEBX-Recordings-Controls-Automator.
+
 # WEBX-Recordings-Controls-Automator
-Use your keyboard inputs to pause/play your meeting recording, forward 10 seconds or backward 10 seconds using arrows.
+Use your keyboard arrows to forward, rewind and to modify the playback speed of Webex recordings.
+What this extension aids with is a more customizable playback experience, allowing you to specify how much to speed up or slow down the video, and the percentage of speed change.
+It overrides the default playback controls of Webex recordings, allowing you to specify, by opening the extension options page, how much to speed up or slow down the video, and the percentage of speed change.
 
+This can allow for a more enjoyable experience trying to catch up with all the recording for an exam the day before!
 
-## Google
-The latest version of this extension is available for free on the Chome Extension Store at this link https://chrome.google.com/webstore/detail/webx-recordings-controls/lgkgpifjihgnoknjpnnldhhenefjpadi?hl=it&authuser=0
-
-
-## Safari
-The .dmg of the latest version is available at the link https://www.andreacarpi.it/webx-recordings-controls/safari-extension/WEBX%20Recordings%20Controls%20Automator-v1.3.1.dmg
-
-### Downloading steps:
-#### 1) Download and open the .dmg file
-
-#### 2) If a warn message shows up, go to Settings > Safety and Privacy and then click "Open anyway"
-
-#### 3) Clik again on the extension file
-
-
-#### 4) Open Safari and press CMG+, or open the preferences
-
-
-#### 5) Browse to extensions and enable WEBX-Recordings-Controls-Automator
-
-
-## Firefox
-Still under development
+This extension is compatible with Webex recordings, and it only works on Firefox.
 
 
 
