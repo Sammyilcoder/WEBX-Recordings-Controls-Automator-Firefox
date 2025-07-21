@@ -1,3 +1,8 @@
+// Cross-browser compatibility polyfill
+if (typeof browser === "undefined") {
+    var browser = chrome;
+}
+
 // Default settings
 const DEFAULT_SETTINGS = {
     stepSeconds: 10,

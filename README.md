@@ -10,6 +10,13 @@ Use your keyboard arrows to forward, rewind and to modify the playback speed of 
 What this extension aids with is a more customizable playback experience, allowing you to specify how much to speed up or slow down the video, and the percentage of speed change.
 It overrides the default playback controls of Webex recordings, allowing you to specify, by opening the extension options page, how much to speed up or slow down the video, and the percentage of speed change.
 
+You can use the following keys to control the playback of Webex recordings:
+- **Left Arrow**: Rewind the video by the specified amount of seconds.
+- **Right Arrow**: Forward the video by the specified amount of seconds.
+- **Up Arrow**: Increase the playback speed by the specified percentage.
+- **Down Arrow**: Decrease the playback speed by the specified percentage.
+
+\
 _This can allow for a more enjoyable experience trying to catch up with all the recordings for an exam the day before!_
 
 

@@ -7,6 +7,12 @@
 // License text available at https://opensource.org/licenses/MIT
 	
 */
+
+// Cross-browser compatibility polyfill
+if (typeof browser === "undefined") {
+    var browser = chrome;
+}
+
 var debug = false;
 
 // Default settings
