@@ -23,6 +23,7 @@
 	"homepage_url": "https://www.andreacarpi.it/",
 	"browser_action": {
 		"default_title": "__MSG_defaultTitle__",
+		"default_popup": "popup.html",
 		"default_icon": {
 			"16": "assets/images/icon16.png",         
             "24": "assets/images/icon24.png",         
@@ -31,6 +32,11 @@
 			"128": "assets/images/icon128.png" 
 		}
     },
+	"permissions": [
+		"storage",
+		"activeTab",
+		"tabs"
+	],
     "icons": { 
 	    "16": "assets/images/icon16.png",
 	    "24": "assets/images/icon24.png",           

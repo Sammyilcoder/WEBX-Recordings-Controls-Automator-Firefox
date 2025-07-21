@@ -1,0 +1,70 @@
+{
+	"appName": {
+		"message": "WEBX Recordings Controls Automator",
+		"description": "The full name of the extension as displayed in the browser."
+	},
+	"appDesc": {
+		"message": "Control Webex meeting recordings with keyboard shortcuts. Use arrow keys to skip forward/backward, up/down arrows to adjust playback speed, and spacebar to pause/play. Fully customizable skip time and speed increments.",
+		"description": "Detailed description of what the extension does for users."
+	},
+	"defaultTitle": {
+		"message": "WEBX Recordings Controls - Settings",
+		"description": "Title shown when hovering over the extension icon and in the popup."
+	},
+	"settingsTitle": {
+		"message": "WEBX Automator Settings",
+		"description": "Main heading in the settings popup."
+	},
+	"settingsSubtitle": {
+		"message": "Configure keyboard controls",
+		"description": "Subtitle explaining the purpose of the settings."
+	},
+	"skipTimeLabel": {
+		"message": "Skip Time (seconds)",
+		"description": "Label for the skip time input field."
+	},
+	"skipTimeDescription": {
+		"message": "How many seconds to skip forward/backward with arrow keys",
+		"description": "Help text explaining the skip time setting."
+	},
+	"speedIncrementLabel": {
+		"message": "Speed Increment",
+		"description": "Label for the speed increment input field."
+	},
+	"speedIncrementDescription": {
+		"message": "How much to increase/decrease playback speed with up/down arrows",
+		"description": "Help text explaining the speed increment setting."
+	},
+	"saveButton": {
+		"message": "Save",
+		"description": "Text for the save settings button."
+	},
+	"resetButton": {
+		"message": "Reset",
+		"description": "Text for the reset settings button."
+	},
+	"settingsSaved": {
+		"message": "Settings saved successfully!",
+		"description": "Success message when settings are saved."
+	},
+	"settingsReset": {
+		"message": "Settings reset to defaults",
+		"description": "Success message when settings are reset."
+	},
+	"errorSaving": {
+		"message": "Error saving settings",
+		"description": "Error message when saving fails."
+	},
+	"errorLoading": {
+		"message": "Error loading settings",
+		"description": "Error message when loading settings fails."
+	},
+	"errorStepSeconds": {
+		"message": "Step seconds must be between 1 and 300",
+		"description": "Validation error for step seconds input."
+	},
+	"errorSpeedIncrement": {
+		"message": "Speed increment must be between 0.01 and 2",
+		"description": "Validation error for speed increment input."
+	}
+}

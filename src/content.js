@@ -8,6 +8,38 @@
 	
 */
 var debug = false;
+
+// Default settings
+var step = 10; // seconds to skip forward/backward
+var percentageSpeedUpdate = 0.25; // Speed increment/decrement in percentage
+
+// Load settings from storage when the script loads
+loadSettings();
+
+// Listen for settings updates from popup
+browser.runtime.onMessage.addListener((message) => {
+	if (message.action === 'updateSettings') {
+		step = message.settings.stepSeconds;
+		percentageSpeedUpdate = message.settings.speedIncrement;
+		console.log('[WEBEX EXTENSION] Settings updated:', message.settings);
+	}
+});
+
+function loadSettings() {
+	// Load settings from Firefox storage
+	browser.storage.local.get({
+		stepSeconds: 10,
+		speedIncrement: 0.25
+	}).then((result) => {
+		step = result.stepSeconds;
+		percentageSpeedUpdate = result.speedIncrement;
+		console.log('[WEBEX EXTENSION] Settings loaded:', result);
+	}).catch((error) => {
+		console.warn('[WEBEX EXTENSION] Error loading settings, using defaults:', error);
+	});
+}
+
+
 if (window.location.href.includes(".webex.com")) {
 	document.body.onkeydown = function(e) {
 		if (e.code === "ArrowLeft") { 
@@ -32,8 +64,6 @@ if (window.location.href.includes(".webex.com")) {
 		}
 	}
 
-	var step = 20; // seconds to skip forward/backward
-	
 	function updateSteps(desired = "DX") {
 		try {
 			// Target the specific VideoJS video element UPDATE HERE IF HTML CHANGES
@@ -61,12 +91,12 @@ if (window.location.href.includes(".webex.com")) {
 				var direction = desired === "DX" ? "forward" : "back";
 				showTimeNotification(direction, step);
 				
-				console.log("Video time updated:", Math.floor(newTime) + "s / " + Math.floor(video.duration) + "s");
+				console.log("[WEBEX EXTENSION] Video time updated:", Math.floor(newTime) + "s / " + Math.floor(video.duration) + "s");
 			} else {
-				console.warn("Video element not found for time control");
+				console.warn("[WEBEX EXTENSION] Video element not found for time control");
 			}
 		} catch (e) { 
-			console.warn("Time update error:", e); 
+			console.warn("[WEBEX EXTENSION] Time update error:", e); 
 		}
 	}
 
@@ -109,7 +139,7 @@ if (window.location.href.includes(".webex.com")) {
 		// Find the WebX video wrapper container UPDATE HERE IF HTML CHANGES
 		var container = document.querySelector('.wxp-video-wrapper') || document.body;
 		if (!container) {
-			console.warn("WebX video wrapper container not found for notification");
+			console.warn("[WEBEX EXTENSION] WebX video wrapper container not found for notification");
 			return;
 		}
 		container.appendChild(notification);
@@ -148,9 +178,9 @@ if (window.location.href.includes(".webex.com")) {
 			if (video) {
 				// Adjust speed based on direction
 				if (speed === "FASTER") {
-					currentSpeed = Math.min(currentSpeed + 0.25, 5.0); // Max 5x speed
+					currentSpeed = Math.min(currentSpeed + percentageSpeedUpdate, 10.0);
 				} else if (speed === "SLOWER") {
-					currentSpeed = Math.max(currentSpeed - 0.25, 0.25); // Min 0.25x speed
+					currentSpeed = Math.max(currentSpeed - percentageSpeedUpdate, 0.25);
 				}
 				
 				// Apply the new playback rate to the video
@@ -159,12 +189,12 @@ if (window.location.href.includes(".webex.com")) {
 				// Show speed notification to user
 				showSpeedNotification(currentSpeed);
 				
-				console.log("Video speed set to:", currentSpeed + "x");
+				console.log("[WEBEX EXTENSION] Video speed set to:", currentSpeed + "x");
 			} else {
-				console.warn("Video element not found for speed control");
+				console.warn("[WEBEX EXTENSION] Video element not found for speed control");
 			}
 		} catch (e) { 
-			console.warn("Speed update error:", e); 
+			console.warn("[WEBEX EXTENSION] Speed update error:", e); 
 		}
 	}
 }

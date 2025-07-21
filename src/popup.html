@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            width: 300px;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .header h2 {
+            color: #333;
+            margin: 0 0 5px 0;
+            font-size: 18px;
+        }
+        
+        .header p {
+            color: #666;
+            margin: 0;
+            font-size: 12px;
+        }
+        
+        .setting-group {
+            margin-bottom: 15px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .setting-group label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .setting-group input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        
+        .setting-group input[type="number"]:focus {
+            border-color: #0064c8;
+            outline: none;
+        }
+        
+        .setting-group .description {
+            font-size: 11px;
+            color: #666;
+            margin-top: 5px;
+            line-height: 1.3;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .save-btn {
+            background: #0064c8;
+            color: white;
+        }
+        
+        .save-btn:hover {
+            background: #0052a3;
+        }
+        
+        .reset-btn {
+            background: #e0e0e0;
+            color: #333;
+        }
+        
+        .reset-btn:hover {
+            background: #d0d0d0;
+        }
+        
+        .status {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 12px;
+            height: 16px;
+        }
+        
+        .status.success {
+            color: #28a745;
+        }
+        
+        .status.error {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>WEBX Automator Settings</h2>
+        <p>Configure keyboard controls</p>
+    </div>
+    
+    <div class="setting-group">
+        <label for="stepSeconds">Skip Time (seconds)</label>
+        <input type="number" id="stepSeconds" min="1" max="300" step="1" value="10">
+        <div class="description">How many seconds to skip forward/backward with arrow keys</div>
+    </div>
+    
+    <div class="setting-group">
+        <label for="speedIncrement">Speed Increment</label>
+        <input type="number" id="speedIncrement" min="0.01" max="2" step="0.01" value="0.25">
+        <div class="description">How much to increase/decrease playback speed with up/down arrows</div>
+    </div>
+    
+    <div class="buttons">
+        <button class="reset-btn" id="resetBtn">Reset</button>
+        <button class="save-btn" id="saveBtn">Save</button>
+    </div>
+    
+    <div class="status" id="status"></div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>

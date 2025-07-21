@@ -1,14 +1,70 @@
 {
 	"appName": {
-		"message": "Webex Automator",
-		"description": "The title of the application, displayed in the web store."
+		"message": "WEBX Recordings Controls Automator",
+		"description": "Il nome completo dell'estensione come mostrato nel browser."
 	},
 	"appDesc": {
-		"message": "Webex Automator allows you to use your keyboard inputs to pause/play your Webex Meetings recording, forward 10 seconds or backward 10 seconds using arrows.",
-		"description": "The description of the application, displayed in the web store."
+		"message": "Controlla le registrazioni delle riunioni Webex con le scorciatoie da tastiera. Usa le frecce per saltare avanti/indietro, le frecce su/giù per regolare la velocità di riproduzione e la barra spaziatrice per pausa/play. Tempo di salto e incrementi di velocità completamente personalizzabili.",
+		"description": "Descrizione dettagliata di cosa fa l'estensione per gli utenti."
 	},
 	"defaultTitle": {
-		"message": "Webex Automator Extension",
-		"description": "The description of the application, displayed in the web store."
+		"message": "WEBX Recordings Controls - Impostazioni",
+		"description": "Titolo mostrato quando si passa il mouse sull'icona dell'estensione e nel popup."
+	},
+	"settingsTitle": {
+		"message": "Impostazioni WEBX Automator",
+		"description": "Titolo principale nel popup delle impostazioni."
+	},
+	"settingsSubtitle": {
+		"message": "Configura i controlli da tastiera",
+		"description": "Sottotitolo che spiega lo scopo delle impostazioni."
+	},
+	"skipTimeLabel": {
+		"message": "Tempo di Salto (secondi)",
+		"description": "Etichetta per il campo di input del tempo di salto."
+	},
+	"skipTimeDescription": {
+		"message": "Quanti secondi saltare avanti/indietro con le frecce",
+		"description": "Testo di aiuto che spiega l'impostazione del tempo di salto."
+	},
+	"speedIncrementLabel": {
+		"message": "Incremento Velocità",
+		"description": "Etichetta per il campo di input dell'incremento di velocità."
+	},
+	"speedIncrementDescription": {
+		"message": "Quanto aumentare/diminuire la velocità di riproduzione con le frecce su/giù",
+		"description": "Testo di aiuto che spiega l'impostazione dell'incremento di velocità."
+	},
+	"saveButton": {
+		"message": "Salva",
+		"description": "Testo per il pulsante di salvataggio impostazioni."
+	},
+	"resetButton": {
+		"message": "Ripristina",
+		"description": "Testo per il pulsante di ripristino impostazioni."
+	},
+	"settingsSaved": {
+		"message": "Impostazioni salvate con successo!",
+		"description": "Messaggio di successo quando le impostazioni vengono salvate."
+	},
+	"settingsReset": {
+		"message": "Impostazioni ripristinate ai valori predefiniti",
+		"description": "Messaggio di successo quando le impostazioni vengono ripristinate."
+	},
+	"errorSaving": {
+		"message": "Errore nel salvare le impostazioni",
+		"description": "Messaggio di errore quando il salvataggio fallisce."
+	},
+	"errorLoading": {
+		"message": "Errore nel caricare le impostazioni",
+		"description": "Messaggio di errore quando il caricamento delle impostazioni fallisce."
+	},
+	"errorStepSeconds": {
+		"message": "I secondi di salto devono essere tra 1 e 300",
+		"description": "Errore di validazione per l'input dei secondi di salto."
+	},
+	"errorSpeedIncrement": {
+		"message": "L'incremento di velocità deve essere tra 0.01 e 2",
+		"description": "Errore di validazione per l'input dell'incremento di velocità."
 	}
 }
