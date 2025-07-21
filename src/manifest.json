@@ -15,13 +15,6 @@
 				"*://*.webex.com/*"
 			],
 			"js":[
-				"jquery.min.js",
-				"jquery-ui.custom.min.js",
-				"bililiteRange.js",
-				"jquery.simulate.js",
-				"jquery.simulate.ext.js",
-				"jquery.simulate.drag-n-drop.js",
-				"raphael-min.js",
 				"content.js"
 			]
 		}

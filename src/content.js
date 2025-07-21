@@ -1,128 +1,98 @@
 /*
 
 // Copyright: © 2020 Andrea Carpi (https://www.andreacarpi.it)
-// Version: 2.0
+// Copyright: © 2025 Samuele De Ciechi
+// Version: 3.0
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
 	
 */
 var debug = false;
 if (window.location.href.includes(".webex.com")) {
-	var basebar = false;
-	var sliderBTNw = false;
 	document.body.onkeydown = function(e) {
 		if (e.code === "ArrowLeft") { 
 			e.preventDefault();
 			e.stopPropagation();
-			try { 
-				let rewindButton = document.querySelector('wxp-rewind-control button') ||
-							   document.querySelector('.wxp-rewind-control button') ||
-							   document.querySelector('button[title*="Rewind"]');
-				if (rewindButton) {
-					rewindButton.click();
-				} else {
-					updateSteps("SX");
-				}
-			} catch (e) {};
+			try {updateSteps("SX"); } catch (e) {};
 		}
 		if (e.code === "ArrowRight") {
 			e.preventDefault();
 			e.stopPropagation();
-			try { 
-				let forwardBtn = document.querySelector('wxp-forward-control button') ||
-								document.querySelector('.wxp-forward-control button') ||
-								document.querySelector('button[title*="Fast forward"]');
-				if (forwardBtn) {
-					forwardBtn.click();
-				} else {
-					updateSteps("DX");
-				}
-			} catch (e) {};
+			try {updateSteps("DX");} catch (e) {};
 		}
 		if (e.code === "ArrowUp") { 
 			e.preventDefault();
 			e.stopPropagation();
-			try { updateSpeed("FASTER"); } catch (e) {};
+			try {updateSpeed("FASTER"); } catch (e) {};
 		} 
 		if (e.code === "ArrowDown") {
 			e.preventDefault();
 			e.stopPropagation();
-			try { updateSpeed("SLOWER"); } catch (e) {};
+			try {updateSpeed("SLOWER"); } catch (e) {};
 		}
 	}
 
-	var step = 10;
+	var step = 20; // seconds to skip forward/backward
+	
 	function updateSteps(desired = "DX") {
-		if (!basebar) {
-			try {
-				basebar = document.querySelector('.wxp-progress-bar-wrapper') ||
-						 document.querySelector('wxp-progress-bar');
-				
-				sliderBTNw = document.querySelector('.wxp-progress-point') ||
-							document.querySelector('.wxp-progress-bar .wxp-progress-point');
-			} catch (e) { console.warn("0", e);}
-		}
 		try {
-			setTimeout(function () {
-				var timePieces;
-				var timeElement = document.querySelector('.wxp-time-display div:last-child') ||
-								 document.querySelector('wxp-time-display div:last-child');
+			// Target the specific VideoJS video element UPDATE HERE IF HTML CHANGES
+			var video = document.querySelector('video.vjs-tech') || 
+					   document.querySelector('video[id*="html5_api"]') ||
+					   document.querySelector('video');
+			
+			if (video) {
+				// Calculate new time position
+				var currentTime = video.currentTime;
+				var newTime;
 				
-				if (timeElement) {
-					var timeText = timeElement.textContent || timeElement.innerHTML;
-					var totalTime = timeText.includes("/") ? 
-						timeText.split("/")[1].trim() : timeText.trim();
-					timePieces = totalTime.split(":");
+				if (desired === "DX") {
+					// Move forward
+					newTime = Math.min(currentTime + step, video.duration);
 				} else {
-					console.warn("Time element not found");
-					return;
+					// Move backward
+					newTime = Math.max(currentTime - step, 0);
 				}
 				
-				let [hh, mm, ss] = [0, 0, 0];
-				if (timePieces.length == 1) {
-					ss = timePieces[0];
-				} else if (timePieces.length == 2) {
-					mm = timePieces[0];
-					ss = timePieces[1];
-				} else if (timePieces.length == 3) {
-					hh = timePieces[0];
-					mm = timePieces[1];
-					ss = timePieces[2];
-				}
-				var max = parseInt(hh)*60*60 + parseInt(mm)*60 + parseInt(ss);
+				// Set the new time directly
+				video.currentTime = newTime;
 				
-				if (basebar && basebar.getBoundingClientRect) {
-					var dx = basebar.getBoundingClientRect().width* (step/max);
-					setTimeout(function () {
-						if (sliderBTNw && $(sliderBTNw).simulate) {
-							$(sliderBTNw).simulate("drag-n-drop", {dx: (desired == "DX")?dx:-dx});
-						} else {
-							console.warn("Cannot simulate drag - element or jQuery simulate not available");
-						}
-					} , 20);
-				}
-			}, 20)
-		} catch (e) { console.warn("1", e); }
+				// Show time notification to user
+				var direction = desired === "DX" ? "forward" : "back";
+				showTimeNotification(direction, step);
+				
+				console.log("Video time updated:", Math.floor(newTime) + "s / " + Math.floor(video.duration) + "s");
+			} else {
+				console.warn("Video element not found for time control");
+			}
+		} catch (e) { 
+			console.warn("Time update error:", e); 
+		}
 	}
+
 	var currentSpeed = 1.0; // Initialize speed to 1x
 	
-	// Show speed notification popup
-	function showSpeedNotification(speed) {
+	// Show notification popup (generic function for both speed and time)
+	function showNotification(message, type = 'speed') {
 		// Remove existing notification if any
-		var existingNotification = document.getElementById('webx-speed-notification');
+		var existingNotification = document.getElementById('webx-notification');
 		if (existingNotification) {
 			existingNotification.remove();
 		}
 		
 		// Create notification element
 		var notification = document.createElement('div');
-		notification.id = 'webx-speed-notification';
-		notification.textContent = speed + 'x';
+		notification.id = 'webx-notification';
+		notification.textContent = message;
+		
+		// Different colors for different notification types
+		var backgroundColor = type === 'speed' ? 'rgba(0, 100, 200, 0.9)' : 'rgba(0, 150, 0, 0.9)';
+		
 		notification.style.cssText = `
 			position: fixed;
 			top: 20px;
 			right: 20px;
-			background: rgba(0, 0, 0, 0.9);
+			background: ${backgroundColor};
 			color: white;
 			padding: 12px 18px;
 			border-radius: 8px;
@@ -136,13 +106,15 @@ if (window.location.href.includes(".webex.com")) {
 			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 		`;
 		
-		// Find the WebX video wrapper container
+		// Find the WebX video wrapper container UPDATE HERE IF HTML CHANGES
 		var container = document.querySelector('.wxp-video-wrapper') || document.body;
-		
-		// Add to the appropriate container
+		if (!container) {
+			console.warn("WebX video wrapper container not found for notification");
+			return;
+		}
 		container.appendChild(notification);
 		
-		// Auto-remove after 1 second
+		// Auto-remove after 1.5 seconds
 		setTimeout(function() {
 			if (notification && notification.parentNode) {
 				notification.style.opacity = '0';
@@ -152,15 +124,26 @@ if (window.location.href.includes(".webex.com")) {
 					}
 				}, 300);
 			}
-		}, 1000);
+		}, 1500);
+	}
+	
+	// Show speed notification popup
+	function showSpeedNotification(speed) {
+		showNotification(speed + 'x', 'speed');
+	}
+	
+	// Show time navigation notification
+	function showTimeNotification(direction, seconds) {
+		var message = direction === 'forward' ? `Forward ${seconds}s` : `Back ${seconds}s`;
+		showNotification(message, 'time');
 	}
 	
 	function updateSpeed(speed = "FASTER") {
 		try {
-			// Find the video element
-			var video = document.querySelector('video') || 
-					   document.querySelector('wxp-video video') ||
-					   document.querySelector('.wxp-video video');
+			// Target the specific VideoJS video element UPDATE HERE IF HTML CHANGES
+			var video = document.querySelector('video.vjs-tech') || 
+					   document.querySelector('video[id*="html5_api"]') ||
+					   document.querySelector('video');
 			
 			if (video) {
 				// Adjust speed based on direction
