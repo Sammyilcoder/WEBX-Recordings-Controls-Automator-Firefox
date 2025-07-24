@@ -17,7 +17,13 @@ You can use the following keys to control the playback of Webex recordings:
 - **Down Arrow**: Decrease the playback speed by the specified percentage.
 
 \
-_This can allow for a more enjoyable experience trying to catch up with all the recordings for an exam the day before!_
+_This can allow for a more enjoyable experience trying to catch up with all the recordings the day before an exam!_
+
+# Installation
+For Firefox users, this extension is available on the Firefox Add-ons page.
+To install the extension, just add the extension to Firefox from the [Firefox Add-ons page](https://addons.mozilla.org/it/firefox/addon/webx-recordings-control/).
+
+Chrome version will be available soon, I am uploading it to the Chrome Web Store in the next few days.
 
 
 
