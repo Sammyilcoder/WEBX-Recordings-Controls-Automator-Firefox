@@ -16,6 +16,8 @@ You can use the following keys to control the playback of Webex recordings:
 - **Up Arrow**: Increase the playback speed by the specified percentage.
 - **Down Arrow**: Decrease the playback speed by the specified percentage.
 
+For changing the default values of the rewinding, forwarding and speed change,which is set to 10 seconds and 25% respectively, you can open the extension options page by clicking on the extension icon in the toolbar.
+
 \
 _This can allow for a more enjoyable experience trying to catch up with all the recordings the day before an exam!_
 
